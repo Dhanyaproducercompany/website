@@ -1,0 +1,252 @@
+/* style.css */
+
+/* Custom styles for the faded orange and green theme */
+:root {
+    /* Original colors - keeping them for reference if needed */
+    /* --color-primary: #f0a868; */
+    /* --color-secondary: #8fbc8f; */
+    --color-dark: #333;
+    --color-light: #f9f9f9;
+
+    /* Softer and lighter colors */
+    --color-primary-light: #f8d7b9; /* Lighter faded orange */
+    --color-secondary-light: #c8e6c9; /* Lighter hint of green */
+    --color-card-bg: #ffffff; /* White background for cards */
+    --color-team-card-bg: #f0a868; /* Original primary for team cards */
+}
+
+body {
+    /* Using Google Fonts - replace 'Inter' with your chosen font */
+    /* Ensure the font is linked in your HTML files */
+    font-family: 'Roboto', sans-serif; /* Example Google Font */
+    color: var(--color-dark);
+    line-height: 1.6;
+    margin-top: 5rem; /* Increased margin-top for larger fixed header */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background-color: var(--color-light); /* Default body background */
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Example Google Font for headings */
+}
+
+
+.header {
+    background-color: var(--color-primary-light); /* Use lighter primary for header */
+    color: var(--color-dark); /* Darker text for better contrast on light header */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+    z-index: 10;
+    height: 5rem; /* Slightly larger header height */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align items */
+}
+
+.header .container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+}
+
+.logo-placeholder {
+    width: 40px; /* Placeholder width */
+    height: 40px; /* Placeholder height */
+    background-color: var(--color-secondary); /* Green background for placeholder */
+    margin-right: 1rem; /* Space between logo and text */
+    border-radius: 50%; /* Make it round */
+    /* Add a simple text or icon if desired */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: var(--color-light);
+}
+
+.nav-link {
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--color-dark); /* Default link color */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle hover effect */
+    border-radius: 0.375rem; /* rounded-md */
+}
+
+.active-nav {
+     background-color: rgba(0, 0, 0, 0.15); /* Slightly darker active state */
+     border-radius: 0.375rem; /* rounded-md */
+     color: var(--color-dark);
+}
+
+.section {
+    padding: 8rem 1rem; /* Increased padding for more space between sections */
+    min-height: 100vh; /* Ensure section takes at least full viewport height */
+    display: flex; /* Use flexbox for content alignment */
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    /* Adding subtle gradients to sections */
+    background: linear-gradient(to bottom, var(--section-start-color), var(--section-end-color));
+}
+
+/* Define gradient colors for each section */
+#home-content {
+    --section-start-color: var(--color-light);
+    --section-end-color: var(--color-primary-light);
+}
+
+#our-solution-content {
+    --section-start-color: var(--color-primary-light);
+    --section-end-color: var(--color-secondary-light);
+}
+
+#goals-content {
+    --section-start-color: var(--color-secondary-light);
+    --section-end-color: var(--color-primary-light); /* Repeating primary for variety */
+    color: var(--color-dark); /* Darker text for readability on lighter background */
+}
+
+#about-us-content {
+    --section-start-color: var(--color-primary-light);
+    --section-end-color: var(--color-light);
+}
+
+
+.card {
+    background-color: var(--color-card-bg); /* White background for cards */
+    border-radius: 0.5rem; /* rounded-lg */
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* shadow-md */
+    /* Add transition for properties that might change size */
+    transition: box-shadow 0.5s ease-in-out, padding 0.5s ease-in-out;
+    position: relative; /* Needed for absolute positioning of image */
+    overflow: hidden; /* Hide overflowing image parts initially */
+    display: flex; /* Use flexbox for content alignment within the card */
+    flex-direction: column; /* Stack image and text vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center;
+    text-align: center;
+    cursor: pointer; /* Indicate that it's interactive */
+    /* transform-origin: center; */ /* Not needed with this approach */
+    /* transform: scale(1); */ /* Not needed with this approach */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    /* Card will grow naturally due to the image's max-height transition */
+}
+
+.team-member {
+    background-color: var(--color-team-card-bg); /* Original primary for team cards */
+    color: var(--color-light); /* Light text on the darker team card background */
+}
+
+/* Styles for the image within the card */
+.card img {
+    /* Initially hidden using opacity and max-height */
+    opacity: 0;
+    max-height: 0; /* Start with no height */
+    max-width: 100%; /* Ensure image fits within the card width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 0; /* Remove initial bottom margin */
+    border-radius: 0.375rem; /* Rounded corners for the image */
+    flex-shrink: 0; /* Prevent image from shrinking */
+    /* Add transition for opacity and max-height to animate the fade-in and size change */
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out, margin-bottom 0.5s ease-in-out; /* Match card transition */
+}
+
+.card:hover img {
+    /* Make image visible on hover by changing opacity and max-height */
+    opacity: 1;
+    max-height: 400px; /* Set a max-height that accommodates your images */
+    /* You might need to adjust this value based on your actual image sizes */
+    margin-bottom: 1rem; /* Add bottom margin back on hover */
+}
+
+/* Style for the text content within the card */
+.card .text-content {
+    /* No specific positioning needed due to flexbox column */
+    width: 100%; /* Ensure text content takes full width */
+    flex-grow: 1; /* Allow text content to grow and take available space */
+    /* Add transition for smooth layout changes */
+    transition: margin-top 0.5s ease-in-out;
+}
+
+
+/* Specific styles for elements to be revealed on scroll */
+.scroll-reveal-element {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-reveal-element.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Home page specific styles for initial layout */
+.home-intro {
+    display: flex;
+    flex-direction: column; /* Stack on small screens */
+    align-items: center;
+    gap: 2rem; /* Space between text and image */
+    margin-bottom: 4rem; /* Space before the next section */
+}
+
+@media (min-width: 768px) { /* Apply on medium screens and larger */
+    .home-intro {
+        flex-direction: row; /* Side-by-side on larger screens */
+        text-align: left;
+    }
+}
+
+.home-intro-text {
+    flex: 1; /* Allow text to take available space */
+    text-align: center; /* Center text on small screens */
+}
+
+@media (min-width: 768px) {
+    .home-intro-text {
+        text-align: left; /* Align text left on larger screens */
+    }
+}
+
+.home-intro-image {
+    flex: 1; /* Allow image to take available space */
+    max-width: 600px; /* Ensure image is responsive */
+    height: auto;
+    border-radius: 0.5rem; /* rounded-lg */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Home page challenges and solutions grid - 2 per row on medium and larger screens */
+#farmers-challenges .grid,
+#our-solution-home .grid {
+    grid-template-columns: repeat(1, minmax(0, 1fr)); /* 1 column on small screens */
+}
+
+@media (min-width: 768px) {
+    #farmers-challenges .grid,
+    #our-solution-home .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 columns on medium and larger screens */
+    }
+}
+
+/* Style for the "Hover" pointer */
+.hover-pointer {
+    text-align: center;
+    margin-bottom: 1rem; /* Space below the pointer */
+    font-size: 0.9rem;
+    color: var(--color-dark);
+}
+
+.hover-pointer::after {
+    content: ' ↓'; /* Down arrow character */
+}
